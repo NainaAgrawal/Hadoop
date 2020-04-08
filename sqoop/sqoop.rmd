@@ -1,3 +1,100 @@
--Run **sqoop help** to see a list of all tools.
--Basic Syntax of sqoop invocation  : **_sqoop tool-name [tool-option]_**
+- Run **sqoop help** to see a list of all tools.
+- Run **sqoop help _tool name_ _[tool-option]_** for help using specific tools.
+- Basic Syntax of sqoop invocation  : ***sqoop tool-name [tool-option]***.
 
+- This command will list all tables of the database. 
+        **sqoop list-tables** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set )
+        **--password pw** (in place of pw enter the password that you have set)
+      
+- **The import-all-tables tool imports an entire database:**
+   - Stored as comma-delimited files.
+   - Default base location is your HDFS home directory.
+   - Data will be in subdirectories corresponding to name of each table.
+        **sqoop import-all-tables** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+
+- You can aslo use the ***--warehouse-dir*** option to specify a different base directory
+        **sqoop import-all-tables** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        **--warehouse-dir /name of the database** (The ***--warehouse-dir*** (specifies the parent folder)option is used for multiple tables, but a ***--target-dir*** (specify the actual folder) option is also available that can be used for importing a single table.
+        
+- The import tool imports a single table.
+        **sqoop import --table name_of_the_table** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        
+     -This Variation writes tab-delimited fields instead:
+        **sqoop import --table name_of_the_table** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        **--fields-terminated-by "\t"** (Use the double quote when specifying the
+delimiter, so the command works well in both command line and in Oozie.)
+
+        
+- __INCREMENTAL IMPORTS__
+  - What if records have changed since last import?
+    - could re-import all records, but this is inefficient.
+           
+- **Sqoop's incremental _lastmodified_ mode imports new and modified records
+  - Based on a timestamp in a specified column 
+  - you must ensure timestsamps are updated when records are added or changed in the database
+        **sqoop import --table name_of_the_table** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        **--incremental lastmodified** \
+        **--check-column mod_dt** \ (in place of mod_dt type the name of the column)
+        **--last-value '2015-09-30 16:00:00'**
+        
+- **Or use Sqoop's incremental _append_ mode to import only new records**
+  -Based on value of last record in specified coloumn
+        **sqoop import --table name_of_the_table** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        **--incremental append** \
+        **--check-column id** \ (in place of id type the name of the column)
+        **--last-value 9226458  **
+        
+- __IMPORTING PARTIAL TABLES__
+  - Import only specified columns from a table.
+        **sqoop import --table name_of_the_table** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        **--columns "id,first_name,last_name,state"**(in "" mention the name of the columns that you want to import.)
+   
+- Import only matching rows from accounts table
+        **sqoop import --table name_of_the_table** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        **--Where "state ='CA'"**
+    
+- You can also import the results of a query, rather than a single table.
+ - You must add the literal __WHERE $CONDITIONS__ token.
+  - Use ***--split-by*** to identify field used to divide work among mappers.
+  - The ***--target-dir*** option is required for free-form queries.
+        **sqoop import** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        **--target-dir /data/loudacre/payable** \ (a ***--target-dir*** (specify the actual folder) option is also available that can be used for importing a single table.)
+        **split-by accounts.id** ( in place of account.id mention the field name by which you want the work to be divided among the mappers)
+        **query 'SELECT accounts.id, first_name, last_name FROM accounts JOIN invoices ON (account.id = invoices.cust_id) WHERE $CONDITIONS'** 
+        
+        • The string ‘WHERE $CONDITIONS’ need to be typed explicitly. This is where Sqoop itself            will insert its range conditions for each tasks. $CONDITIONS does not include any of            your own filtering conditions.
+        • Use the ‘AND’ to specify your own filtering criteria
+        • When using --query, don’t combine with --columns or --where, they will be disregarded.
+        • The --target-dir option is required for free from queries so to remove the ambiguity             of possible multiple tables as output.
+        • Note the use of single quotes in the --query parameter: this is to avoid Unix to                 interpret $CONDITIONS as a variable. 
+  
+      
