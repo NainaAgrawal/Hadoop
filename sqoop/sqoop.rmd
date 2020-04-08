@@ -107,4 +107,21 @@ delimiter, so the command works well in both command line and in Oozie.)
         **split-by accounts.id** ( in place of account.id mention the field name by which you want the work to be divided among the mappers)
         **query 'SELECT accounts.id, first_name, last_name, bill_amount FROM accounts JOIN invoices ON (account.id = invoices.cust_id) WHERE $CONDITIONS' AND bill_amount >= 40**  
   
-      
+- Sqoop's export tool pulls records from HDFS into RDBMS
+        **sqoop import** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        **--export-dir /loudacre/recommender_output** \ 
+        **--update-mode allowinsert** \
+        **--table name_of_the_table**
+***NOTE*** (The --update-mode can be set to upsert which inserts a row if the record is not found or update its values otherwise. If you only want to update existing records you can use updateonly.)
+
+- By default, sqoop typically importa data using four parallel tasks(called mappers)
+  -You can influence the number of tasks using th -m option
+        **sqoop import --table name_of_the_table** \
+        **connect jdbc:mysql://name_of_the server/name_of_the_database \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        -m 8
+
