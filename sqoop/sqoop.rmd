@@ -1,3 +1,3 @@
 - Run **sqoop help** to see a list of all tools.
-* Basic Syntax of sqoop invocation * : _ sqoop tool-name [tool-option] _
+- Basic Syntax of sqoop invocation  : _*sqoop tool-name [tool-option]*_
 
