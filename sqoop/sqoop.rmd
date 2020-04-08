@@ -91,10 +91,20 @@ delimiter, so the command works well in both command line and in Oozie.)
         **split-by accounts.id** ( in place of account.id mention the field name by which you want the work to be divided among the mappers)
         **query 'SELECT accounts.id, first_name, last_name FROM accounts JOIN invoices ON (account.id = invoices.cust_id) WHERE $CONDITIONS'** 
         
-        • The string ‘WHERE $CONDITIONS’ need to be typed explicitly. This is where Sqoop itself            will insert its range conditions for each tasks. $CONDITIONS does not include any of            your own filtering conditions.
-        • Use the ‘AND’ to specify your own filtering criteria
-        • When using --query, don’t combine with --columns or --where, they will be disregarded.
-        • The --target-dir option is required for free from queries so to remove the ambiguity             of possible multiple tables as output.
-        • Note the use of single quotes in the --query parameter: this is to avoid Unix to                 interpret $CONDITIONS as a variable. 
+(• The string ‘WHERE $CONDITIONS’ need to be typed explicitly. This is where Sqoop itself will insert its range conditions for each tasks. $CONDITIONS does not include any of your own filtering conditions.
+• Use the ‘AND’ to specify your own filtering criteria.
+• When using --query, don’t combine with --columns or --where, they will be disregarded.
+• The --target-dir option is required for free from queries so to remove the ambiguity          of possible multiple tables as output.
+• Note the use of single quotes in the --query parameter: this is to avoid Unix to                 interpret $CONDITIONS as a variable.)
+
+- The --where option is ignored in a free-form query.
+  -you must specify your criteria using AND following the WHERE clause.      
+        **sqoop import** \
+        **--connect jdbc:mysql://name of the server/name of the database** \
+        **--username training** \(in place of training enter the username that you have set)
+        **--password pw** (in place of pw enter the password that you have set)
+        **--target-dir /data/loudacre/payable** \ (a ***--target-dir*** (specify the actual folder) option is also available that can be used for importing a single table.)
+        **split-by accounts.id** ( in place of account.id mention the field name by which you want the work to be divided among the mappers)
+        **query 'SELECT accounts.id, first_name, last_name, bill_amount FROM accounts JOIN invoices ON (account.id = invoices.cust_id) WHERE $CONDITIONS' AND bill_amount >= 40**  
   
       
