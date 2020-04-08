@@ -1,0 +1,2 @@
+- Run **sqoop help** to see a list of all tools.
+
