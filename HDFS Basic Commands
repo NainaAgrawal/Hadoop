@@ -1,0 +1,15 @@
+Hadoop is case sensitive.
+Jvm : Java Virtual Machine.
+
+Cluster: Hadoop can run in 3 modes: Standalone Mode, Pseudo distributed Mode and Fully Distributed mode
+In seudo-distributed mode: This mode is almost simalr to FDM. all daemons run in one machine but they are running in different Jvm's.
+In Standalone Mode: It doesn't have any daemons running. Its only for testing purposes.
+
+To check the version of hadoop the command is **Hadoop Version**
+
+To clear the terminal : ** Clear **
+
+To check the health of the root directory of hdfs : ** Fsck / ** (/ = hdfs)
+
+To check the list of the all the files present in the hadoop root directory: hdfs dfs -ls /
+
