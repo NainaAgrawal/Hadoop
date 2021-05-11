@@ -23,5 +23,9 @@ To check the health of the root directory of hdfs : ** Fsck / ** (/ = root direc
 
 To check the list of the all the files present in the hadoop root directory: hdfs dfs -ls /
 
+The command **cd** lets you set or change a directory as default.
 
 
+Common Errors:
+
+If you try to create a file with an existing name then it will say 'file already exists'
