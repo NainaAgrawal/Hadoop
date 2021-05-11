@@ -1,15 +1,27 @@
 Hadoop is case sensitive.
 Jvm : Java Virtual Machine.
 
+Color Reference:
+Blue color: Folder
+Black color: File
+purple color: Image
+Green color: Inbuilt app, you can use only cat function to view not ls function to check list.
+
 Cluster: Hadoop can run in 3 modes: Standalone Mode, Pseudo distributed Mode and Fully Distributed mode
 In seudo-distributed mode: This mode is almost simalr to FDM. all daemons run in one machine but they are running in different Jvm's.
 In Standalone Mode: It doesn't have any daemons running. Its only for testing purposes.
+
+If you press **tab** while entering commands in lfs. Then tab will complete the file path. But in case of hdfs you have to enter the command maually and tab doesn't work there.
+
+If a command is too long then **\** will let you continue the command in next line.
 
 To check the version of hadoop the command is **Hadoop Version**
 
 To clear the terminal : ** Clear **
 
-To check the health of the root directory of hdfs : ** Fsck / ** (/ = hdfs)
+To check the health of the root directory of hdfs : ** Fsck / ** (/ = root directory)
 
 To check the list of the all the files present in the hadoop root directory: hdfs dfs -ls /
+
+
 
