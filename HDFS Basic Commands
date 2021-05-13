@@ -34,8 +34,19 @@ To check the list of the all the files present in the hadoop root directory: hdf
 
 The command **cd** lets you set or change a directory as default.
 
+To create a new directory ** hdfs dfs -mkdir <path where you want to create the file> <name of the file>
+
+To remove a directory or file ** hdfs dfs -rm -r <file path and name> **
+
 To copy a file from lfs to hdfs **hdfs dfs -put <lfs file path> <hdfs store path>**
 
+To read the content of a file ** hdfs dfs -cat <file path, file name>**
+
+To retrieve a file hdfs dfs -get **<hdfs path> <lf path>**
+
+To see the last few lines of a file ** hdfs dfs -cat <file path, file name> | tail -n 20**
+
+To see the last few lines of a file ** hdfs dfs -cat <file path, file name> | head -n 20**
 
 Common Errors:
 
