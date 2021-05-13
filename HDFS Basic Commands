@@ -1,7 +1,12 @@
 Hadoop is case sensitive.
-Jvm : Java Virtual Machine.
 
-Color Reference:
+**Abbreviations used**
+
+Jvm : Java Virtual Machine.
+LFS: Local File System
+HDFS: Hadoop Distributed File System
+
+**Color Reference:**
 Blue color: Folder
 Black color: File
 purple color: Image
@@ -11,9 +16,13 @@ Cluster: Hadoop can run in 3 modes: Standalone Mode, Pseudo distributed Mode and
 In seudo-distributed mode: This mode is almost simalr to FDM. all daemons run in one machine but they are running in different Jvm's.
 In Standalone Mode: It doesn't have any daemons running. Its only for testing purposes.
 
+**Tricks**
+
 If you press **tab** while entering commands in lfs. Then tab will complete the file path. But in case of hdfs you have to enter the command maually and tab doesn't work there.
 
 If a command is too long then **\** will let you continue the command in next line.
+
+**Commands**
 
 To check the version of hadoop the command is **Hadoop Version**
 
@@ -24,6 +33,8 @@ To check the health of the root directory of hdfs : ** Fsck / ** (/ = root direc
 To check the list of the all the files present in the hadoop root directory: hdfs dfs -ls /
 
 The command **cd** lets you set or change a directory as default.
+
+To copy a file from lfs to hdfs **hdfs dfs -put <lfs file path> <hdfs store path>**
 
 
 Common Errors:
