@@ -46,7 +46,7 @@ To retrieve a file from hadoop in lfs  **hdfs dfs -get <hdfs path> <lf path>**
 
 To see the last few lines of a file ** hdfs dfs -cat <file path, file name> | tail -n 20**
 
-To see the last few lines of a file ** hdfs dfs -cat <file path, file name> | head -n 20**
+To see the first few lines of a file ** hdfs dfs -cat <file path, file name> | head -n 20**
 
 Common Errors:
 
