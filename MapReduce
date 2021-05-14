@@ -1,0 +1,40 @@
+**MapReduce** : It is a software framework for writing Big data Application. It is the procesing layer of Hadoop.
+-- It operate on <key,value> pairs
+-- The Mapper produces meaningful pairs
+-- The Reducer aggregates them to generate the final result 
+
+**Advantages of Map Reduce:** 
+-- **Parallel processing** : It processes the data parallely. (Time saving)
+-- **Data Locality** : Moving procesing to data and not the otherway. (Not expensive)
+
+MapReduce 1:
+In Map Reduce 1 there were two daemons:
+1. **Job Tracker** : The daemon that ran in Master Machine.
+-- Job Tracker had to do all the work by itslef, like monitoring the tasks, and allocate the resources for the task to be accomplished.
+-- Job tracker used to overloaded with work.
+
+2. **Task Tracker** : The daemon of slave Machine.
+-- Task Tracker was alert at all time to listen to any requests if the client has made. 
+
+MapReduce 2:
+In Map reduce yarn(Yet aAnother Resource Negotiator) was introduced. Refer to the yarn file.
+
+**commands**
+
+To use a hadooop jar file and to view its content : **hadoop jar <jar file name>**
+
+To execute a mapreduce job: **hadoop jar <jar_file_name> <name_of_the_function> <hdfs_input_file_path> <hdfs_output_file_path>**
+-- <name_of_the_function>: (wordcount in my case)
+-- <hdfs_input_file_path>: (The file where the input for mapreduce is stored or the query that you want MR to execute)
+-- <hdfs_output_file_path>: (The file path where you want to store the result of MR execution)
+    -- The output files always stores 2 files:
+        ~ The succes file.
+        ~ The part file which contains the output.
+        
+
+
+
+
+
+
+
