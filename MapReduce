@@ -23,11 +23,14 @@ In Map reduce yarn(Yet aAnother Resource Negotiator) was introduced. Refer to th
 
 To use a hadooop jar file and to view its content : **hadoop jar <jar file name>**
 
+To execute a mapreduce job first you have to transfer the file from lfs to hdfs:
+**hdfs dfs -put <local_file_path> <hdfs_file_path>**
+
 To execute a mapreduce job: **hadoop jar <jar_file_name> <name_of_the_function> <hdfs_input_file_path> <hdfs_output_file_path>**
 -- <name_of_the_function>: (wordcount in my case)
 -- <hdfs_input_file_path>: (The file where the input for mapreduce is stored or the query that you want MR to execute)
 -- <hdfs_output_file_path>: (The file path where you want to store the result of MR execution)
-    -- The output files always stores 2 files:
+    -- The output file is always stored in hdfs and it consists 2 files:
         ~ The succes file.
         ~ The part file which contains the output.
         
