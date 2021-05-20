@@ -1,5 +1,5 @@
 - Run **sqoop help** to see a list of all tools.
-- Run **sqoop help _tool name_ _[tool-option]_** for help using specific tools.
+- Run **sqoop help tool_name [tool_option]** for help using specific tools.
 - Basic Syntax of sqoop invocation  : ***sqoop tool-name [tool-option]***.
 
 - This command will list all tables of the database. 
