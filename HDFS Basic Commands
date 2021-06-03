@@ -38,6 +38,8 @@ To create a new directory ** hdfs dfs -mkdir <path where you want to create the 
 
 To remove a file ** hdfs dfs -rm  <file path and name> **
 
+To remove a directory ** hdfs dfs -rmdir <file path and name> **
+
 To remove a directory along with the files that it consists ** hdfs dfs -rm -r  <file_path_and_name> **
 
 To copy a file from lfs to hdfs **hdfs dfs -put <lfs file path> <hdfs store path>**
